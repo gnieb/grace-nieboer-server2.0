@@ -21,7 +21,7 @@ class Projects(Resource):
         if len(Project.query.all()) <1:
             return make_response("Nothing to see here yet!", 200)
         
-        projects = [p.to_dict() for p in Project.query.all()]
+        projects = [p.to_dict(rules=('photo',)) for p in Project.query.all()]
         return make_response(projects, 200)
     
 class ProjectPhotos(Resource):
