@@ -13,8 +13,8 @@ requests = "*"
 python-dotenv = "*"
 sqlalchemy-serializer = "*"
 gunicorn = "*"
-psycopg2-binary = "*"
 flask-sqlalchemy = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
