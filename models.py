@@ -4,6 +4,8 @@ from config import db
 class Project(db.Model, SerializerMixin):
     __tablename__ = 'projects'
 
+    serialize_rules = ('-photo',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String )
     github = db.Column(db.String)
@@ -14,6 +16,7 @@ class Project(db.Model, SerializerMixin):
 
 class ProjectPhoto(db.Model, SerializerMixin):
     __tablename__ = 'projectphotos'
+    serialize_rules = ('-project',)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False) # This field will store the image file name or path.
