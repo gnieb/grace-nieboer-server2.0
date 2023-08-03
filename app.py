@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, make_response
+from flask import Flask, make_response
 from flask_restful import Resource
-from config import app, api, db
+from config import app, api
 from models import Project, ProjectPhoto
 
 from flask_cors import CORS
