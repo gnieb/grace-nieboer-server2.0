@@ -29,19 +29,22 @@ class Projects(Resource):
         github = request.get_json()['github']
         descript = request.get_json()['descript']
         demo = request.get_json()['demo']
-
-        project = Project(
-            name=name,
-            github=github,
-            descript=descript,
-            demo=demo
-        )
+        try:
+            project = Project(
+                name=name,
+                github=github,
+                descript=descript,
+                demo=demo
+            )
+        except:
+            return make_response({"error":"Validation Error, 400"}, 400)
         try:
             db.session.add(project)
             db.session.commit()
         except:
-            return make_response({"Error": "400 bad request"}, 400)
-        return make_response("New project posted successfully", 201)
+            return make_response({"error":"Validation Error, 400"}, 400)
+        
+        return make_response(project.to_dict(), 201)
 
     
 class ProjectPhotos(Resource):
@@ -52,18 +55,19 @@ class ProjectPhotos(Resource):
     def post(self):
         name=request.get_json()['name']
         project_id=request.get_json()['project_id']
-
-        newPhoto = ProjectPhoto(
-            name=name,
-            project_id=project_id
-        )
-
+        try:
+            newPhoto = ProjectPhoto(
+                name=name,
+                project_id=project_id
+            )
+        except:
+            return make_response({"error":"Validation Error, 400"}, 400)
         try:
             db.session.add(newPhoto)
             db.session.commit()
         except:
-            return make_response({"Error":"Bad request, please try again"}, 400)
-        return make_response("new project photo credated successfully!", 201)
+            return make_response({"error":"Validation Error, 400"}, 400)
+        return make_response(newPhoto.to_dict(), 201)
     
 api.add_resource(Home, '/')
 api.add_resource(Projects, '/projects')
