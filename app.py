@@ -1,4 +1,4 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 from flask_restful import Resource
 from config import app, api, db
 from models import Project, ProjectPhoto
@@ -23,12 +23,47 @@ class Projects(Resource):
         
         projects = [p.to_dict(rules=('photo',)) for p in Project.query.all()]
         return make_response(projects, 200)
+
+    def post(self):
+        name = request.get_json()['name']
+        github = request.get_json()['github']
+        descript = request.get_json()['descript']
+        demo = request.get_json()['demo']
+
+        project = Project(
+            name=name,
+            github=github,
+            descript=descript,
+            demo=demo
+        )
+        try:
+            db.session.add(project)
+            db.session.commit()
+        except:
+            return make_response({"Error": "400 bad request"}, 400)
+        return make_response("New project posted successfully", 201)
+
     
 class ProjectPhotos(Resource):
     def get(self):
         projphotos = [p.to_dict() for p in ProjectPhoto.query.all()]
         return make_response(projphotos, 200)
     
+    def post(self):
+        name=request.get_json()['name']
+        project_id=request.get_json()['project_id']
+
+        newPhoto = ProjectPhoto(
+            name=name,
+            project_id=project_id
+        )
+
+        try:
+            db.session.add(newPhoto)
+            db.session.commit()
+        except:
+            return make_response({"Error":"Bad request, please try again"}, 400)
+        return make_response("new project photo credated successfully!", 201)
     
 api.add_resource(Home, '/')
 api.add_resource(Projects, '/projects')
