@@ -23,4 +23,4 @@ class ProjectPhoto(db.Model, SerializerMixin):
     url = db.Column(db.String, nullable=False) # This field will store the image file name or path.
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     
-    project = db.relationship('Project', back_populates='photo')
+    project = db.relationship('Project', back_populates='photos')
