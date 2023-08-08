@@ -12,7 +12,7 @@ class Project(db.Model, SerializerMixin):
     demo = db.Column(db.String)
     descript = db.Column(db.String)
    
-    photos = db.relationship('ProjectPhoto', uselist=False, back_populates='project')
+    photos = db.relationship('ProjectPhoto', back_populates='project')
 
 class ProjectPhoto(db.Model, SerializerMixin):
     __tablename__ = 'projectphotos'
