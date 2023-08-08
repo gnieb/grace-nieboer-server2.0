@@ -1,0 +1,1 @@
+run export DATABASE_URI=<postgres External URI goes here>
