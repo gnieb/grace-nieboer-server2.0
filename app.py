@@ -66,7 +66,7 @@ class ProjectPhotos(Resource):
             db.session.add(newPhoto)
             db.session.commit()
         except:
-            return make_response({"error":"Validation Error, 400"}, 400)
+            return make_response({"error":"Unable to save to the database, 400"}, 400)
         return make_response(newPhoto.to_dict(), 201)
     
 api.add_resource(Home, '/')
