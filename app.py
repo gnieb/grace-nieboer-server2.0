@@ -21,7 +21,7 @@ class Projects(Resource):
         if len(Project.query.all()) <1:
             return make_response("Nothing to see here yet!", 200)
         
-        projects = [p.to_dict(rules=('photo',)) for p in Project.query.all()]
+        projects = [p.to_dict(rules=('photos',)) for p in Project.query.all()]
         return make_response(projects, 200)
 
     def post(self):
@@ -55,10 +55,12 @@ class ProjectPhotos(Resource):
     def post(self):
         name=request.get_json()['name']
         project_id=request.get_json()['project_id']
+        url=request.get_json()['url']
         try:
             newPhoto = ProjectPhoto(
                 name=name,
-                project_id=project_id
+                project_id=project_id,
+                url=url
             )
         except:
             return make_response({"error":"Validation Error, 400"}, 400)
