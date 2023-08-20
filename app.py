@@ -29,12 +29,19 @@ class Projects(Resource):
         github = request.get_json()['github']
         descript = request.get_json()['descript']
         demo = request.get_json()['demo']
+        back_end = request.get_json()['demo']
+        front_end = request.get_json()['demo']
+        css = request.get_json()['demo']
+
         try:
             project = Project(
                 name=name,
                 github=github,
                 descript=descript,
-                demo=demo
+                demo=demo,
+                front_end=front_end,
+                back_end=back_end,
+                css=css
             )
         except:
             return make_response({"error":"Validation Error, 400"}, 400)
