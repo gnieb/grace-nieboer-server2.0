@@ -11,6 +11,9 @@ class Project(db.Model, SerializerMixin):
     github = db.Column(db.String)
     demo = db.Column(db.String)
     descript = db.Column(db.String)
+    back_end = db.Column(db.String)
+    front_end = db.Column(db.String)
+    css = db.Column(db.String)
    
     photos = db.relationship('ProjectPhoto', back_populates='project')
 
