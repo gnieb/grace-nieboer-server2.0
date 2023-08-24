@@ -6,8 +6,6 @@ from models import Project, ProjectPhoto
 from flask_cors import CORS
 from sqlalchemy.sql import text
 
-from dotenv import load_dotenv
-load_dotenv()
 
 CORS(app, supports_credentials=True) 
 
