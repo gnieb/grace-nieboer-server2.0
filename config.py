@@ -12,11 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
-
 app.json.compact = False
-
-
-# db.init_app(app)
 
 api = Api(app)
