@@ -8,7 +8,8 @@ class Project(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String )
-    github = db.Column(db.String)
+    github_fe = db.Column(db.String)
+    github_be = db.Column(db.String)
     demo = db.Column(db.String)
     descript = db.Column(db.String)
     back_end = db.Column(db.String)
