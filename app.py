@@ -61,11 +61,13 @@ class ProjectPhotos(Resource):
         name=request.get_json()['name']
         project_id=request.get_json()['project_id']
         url=request.get_json()['url']
+        isPhoto=request.get_json()['isPhoto']
         try:
             newPhoto = ProjectPhoto(
                 name=name,
                 project_id=project_id,
-                url=url
+                url=url,
+                isPhoto=isPhoto
             )
         except:
             return make_response({"error":"Validation Error, 400"}, 400)
