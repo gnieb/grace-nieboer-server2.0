@@ -15,6 +15,7 @@ class Project(db.Model, SerializerMixin):
     back_end = db.Column(db.String)
     front_end = db.Column(db.String)
     css = db.Column(db.String)
+    database = db.Column(db.String)
    
     photos = db.relationship('ProjectPhoto', back_populates='project')
 
