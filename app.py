@@ -25,6 +25,7 @@ class Projects(Resource):
     def post(self):
         name = request.get_json()['name']
         github_fe = request.get_json()['github_fe']
+        github_be = request.get_json()['github_be']
         descript = request.get_json()['descript']
         demo = request.get_json()['demo']
         back_end = request.get_json()['back_end']
@@ -35,6 +36,7 @@ class Projects(Resource):
             project = Project(
                 name=name,
                 github_fe=github_fe,
+                github_be=github_be,
                 descript=descript,
                 demo=demo,
                 front_end=front_end,
